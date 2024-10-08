@@ -1,0 +1,6 @@
+#!/bin/bash
+# Build The Apk
+need jdk17-openjdk
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
+./gradlew
+echo -e "Apk in $(pwd)/app/build/outputs/apk/debug/app-debug.apk"

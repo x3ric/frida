@@ -1,0 +1,32 @@
+{
+  "name": "com.kiloo.subwaysurf",
+  "version": "1.0.0",
+  "description": "Frida mod menu for Subway Surfers",
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "endOfLine": "lf"
+  },
+  "keywords": [
+    "frida",
+    "frida-il2cpp-bridge",
+    "lgl",
+    "modding",
+    "android",
+    "modmenu"
+  ],
+  "author": "x3ric",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/frida-gum": "^18.4.1",
+    "frida-compile": "^16.3.0",
+    "frida-il2cpp-bridge": "^0.8.5",
+    "typescript": "^5.1.6"
+  }
+}

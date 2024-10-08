@@ -1,0 +1,22 @@
+{
+  "name": "@frida/https",
+  "description": "Node.js's https module for Frida",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "files": [
+    "/index.js"
+  ],
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frida/gumjs-https.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frida/gumjs-https/issues"
+  },
+  "homepage": "https://github.com/frida/gumjs-https#readme"
+}

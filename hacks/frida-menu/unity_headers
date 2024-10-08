@@ -1,0 +1,54 @@
+#!/bin/python
+import os
+import sys
+import re
+from shutil import rmtree
+from glob import glob
+
+def grep_struct(file, struct_pattern):
+    with open(file, "r") as header:
+        # Construct regex pattern for struct definitions
+        pattern = rf"typedef\s+struct\s+{struct_pattern}\s*{{.*?}}{struct_pattern};"
+        matches = re.findall(pattern, header.read(), re.DOTALL)
+        
+        if matches:
+            return matches
+        else:
+            print(f"No matches for pattern '{struct_pattern}' in {file}")
+            return []
+
+def process_files(src_folder, dst_folder, struct_pattern):
+    # Clean up destination folder
+    rmtree(dst_folder, ignore_errors=True)
+    os.makedirs(dst_folder)
+
+    # Use glob to get all header files
+    header_files = glob(os.path.join(src_folder, "*.h"))
+    header_files.sort()  # Sort files alphabetically
+
+    for file in header_files:
+        structs = grep_struct(file, struct_pattern)
+        if structs:
+            for idx, typedef in enumerate(structs):
+                output_file = os.path.join(dst_folder, f"{os.path.basename(file)}_struct{idx}.h")
+                with open(output_file, "w") as f:
+                    f.write(typedef)
+                print(f"Written {output_file}")
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python script.py <struct_name_or_pattern>")
+        sys.exit(1)
+
+    src_folder = "./headers/"
+    dst_folder = "adjusted"
+    struct_pattern = sys.argv[1]
+
+    # Default to '.*' if no pattern or '*' is given
+    if struct_pattern == '*':
+        struct_pattern = '.*'
+    elif not struct_pattern:
+        struct_pattern = '.*'
+
+    process_files(src_folder, dst_folder, struct_pattern)
+

@@ -1,0 +1,44 @@
+#!/bin/bash
+# il2cpp compilation script with frida-menu
+MODE=""
+app_path=""
+usage() {
+  echo "Usage: $0 -m <mode> -f <main_file>"
+  echo "  -m <mode>       Compilation mode (c for compile, w for watch, s for spawn)"
+  echo "  -f <main_file>  The main app path for output (e.g., com.fgol.HungrySharkEvolution)"
+  exit 1
+}
+while getopts ":m:f:" opt; do
+  case ${opt} in
+    m )
+      MODE=$OPTARG
+      ;;
+    f )
+      app_path=$OPTARG
+      ;;
+    \? )
+      usage
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+if [[ -z "$MODE" || -z "$app_path" ]]; then
+  usage
+fi
+case "$MODE" in
+  c )
+    echo "Compiling with frida-compile..."
+    bash -ci 'frida-compile ./src/'$app_path'.ts -o '../$app_path.js' -c'
+    ;;
+  w )
+    echo "Watching with frida-compile..."
+    bash -ci 'frida-compile ./src/'$app_path'.ts -o '../$app_path.js' -w'
+    ;;
+  s )
+    echo "Spawning Frida ..."
+    bash -ci 'frida -U -f '$app_path' -l '../$app_path.js''
+    ;;
+  * )
+    usage
+    ;;
+esac

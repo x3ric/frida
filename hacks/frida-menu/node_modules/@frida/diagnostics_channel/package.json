@@ -1,0 +1,22 @@
+{
+  "name": "@frida/diagnostics_channel",
+  "description": "Node.js's diagnostics_channel module for Frida",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "files": [
+    "/index.js"
+  ],
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frida/gumjs-diagnostics-channel.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frida/gumjs-diagnostics-channel/issues"
+  },
+  "homepage": "https://github.com/frida/gumjs-diagnostics-channel#readme"
+}

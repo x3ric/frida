@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {   
+    "module": "commonjs",
+    "outDir": "../",
+    "rootDir": "./src",
+    "lib": ["es2016"],
+    "moduleResolution": "node",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

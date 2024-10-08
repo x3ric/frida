@@ -1,0 +1,11 @@
+#!/bin/zsh -i
+local_dir="$HOME/.local/opt/Frida"
+if [ ! -d "$local_dir" ]; then
+    mkdir -p "$local_dir"
+    cd "$local_dir"
+    pyenv > /dev/null 2>&1
+    pip install frida-tools setuptools objection
+else
+    cd "$local_dir"
+    pyenv > /dev/null 2>&1
+fi

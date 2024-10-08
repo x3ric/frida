@@ -1,0 +1,9 @@
+#!/bin/zsh -i
+# il2cpp init repo
+./init
+app_id=$(adb shell pm path =$(adb shell pm list packages | sed 's/package://' | fzf-splitted) | head -n 1 | sed 's/package://')
+mkdir -p "$app_id"
+cd "$app_id"
+npm init -y
+npm install --save-dev @types/node @types/frida-gum frida-compile frida-il2cpp-bridge typescript
+echo -e "\n"scripts": {\n  "spawn": "frida -U -f "$app_id" -l dist/agent.js",\n  "build": "frida-compile src/index.ts -o dist/agent.js -c",\n  "watch": "frida-compile src/index.ts -o dist/agent.js -w"\n},"
